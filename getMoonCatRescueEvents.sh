@@ -3,7 +3,8 @@
 MOONCATRESCUEEVENTSDATA=MoonCatRescueEventsData.txt
 MOONCATRESCUEEVENTSRESULTS=MoonCatRescueEventsResults.js
 
-geth attach http://localhost:8545 << EOF | tee $MOONCATRESCUEEVENTSDATA
+# geth attach http://localhost:8545 << EOF | tee $MOONCATRESCUEEVENTSDATA
+geth attach http://localhost:8545 << EOF > $MOONCATRESCUEEVENTSDATA
 
 loadScript("deploymentData.js");
 
@@ -24,7 +25,7 @@ for (var i = 0; i < totalSupply && i < MAX; i++) {
   var catDetails = moonCat.getCatDetails(catId);
   console.log("RESULT: [" + i + ", \"" + catDetails[0] + "\", \"" + catDetails[1] + "\", \"" + catDetails[2] + "\", \"" +
     catDetails[3] + "\", \"" + catDetails[4].shift(-18).toFixed(18) + "\", \"" + catDetails[5] + "\", \"" +
-    catDetails[6].shift(-18).toFixed(18) + "\"]");
+    catDetails[6].shift(-18).toFixed(18) + "\"],");
 }
 console.log("RESULT: ];");
 
@@ -50,7 +51,7 @@ while (fromBlock < maxBlockNumber) {
   var catRescuedEvents = moonCat.CatRescued({}, { fromBlock: fromBlock, toBlock: toBlock });
   catRescuedEvents.watch(function (error, result) {
       var timestamp = eth.getBlock(result.blockNumber).timestamp;
-      console.log("RESULT: [" + row + ", " + result.blockNumber + ", " + result.transactionIndex + ", \"" + result.transactionHash + "\", \"" + result.args.to + "\", \"" + result.args.catId + "\", " + timestamp + "], ");
+      console.log("RESULT: [" + row + ", " + result.blockNumber + ", " + result.transactionIndex + ", \"" + result.transactionHash + "\", \"" + result.args.to + "\", \"" + result.args.catId + "\", " + timestamp + "],");
       row++;
   });
   catRescuedEvents.stopWatching();
@@ -71,7 +72,7 @@ while (fromBlock < maxBlockNumber) {
   var genesisCatsAddedEvents = moonCat.GenesisCatsAdded({}, { fromBlock: fromBlock, toBlock: toBlock });
   genesisCatsAddedEvents.watch(function (error, result) {
       var timestamp = eth.getBlock(result.blockNumber).timestamp;
-      console.log("RESULT: [" + row + ", " + result.blockNumber + ", " + result.transactionIndex + ", \"" + result.transactionHash + "\", \"" + JSON.stringify(result.args.catIds) + "\", " + timestamp + "], ");
+      console.log("RESULT: [" + row + ", " + result.blockNumber + ", " + result.transactionIndex + ", \"" + result.transactionHash + "\", " + JSON.stringify(result.args.catIds) + ", " + timestamp + "], ");
       row++;
   });
   genesisCatsAddedEvents.stopWatching();

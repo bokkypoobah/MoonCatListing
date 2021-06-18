@@ -6,8 +6,8 @@ loadScript("deploymentData.js");
 loadScript("MoonCatRescueEventsResults.js");
 
 console.log("moonCatDetailsByRescueOrders: " + JSON.stringify(moonCatDetailsByRescueOrders));
-console.log("moonCatRescueEvents: " + JSON.stringify(moonCatRescueEvents));
-console.log("moonCatGenesisCatsAddedEvents: " + JSON.stringify(moonCatGenesisCatsAddedEvents));
+// console.log("moonCatRescueEvents: " + JSON.stringify(moonCatRescueEvents));
+// console.log("moonCatGenesisCatsAddedEvents: " + JSON.stringify(moonCatGenesisCatsAddedEvents));
 
 exit;
 
