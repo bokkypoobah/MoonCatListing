@@ -5,7 +5,9 @@ geth attach http://localhost:8545 << EOF
 loadScript("deploymentData.js");
 loadScript("MoonCatRescueEventsResults.js");
 
-console.log(JSON.stringify(rescueEvents));
+console.log("moonCatDetailsByRescueOrders: " + JSON.stringify(moonCatDetailsByRescueOrders));
+console.log("moonCatRescueEvents: " + JSON.stringify(moonCatRescueEvents));
+console.log("moonCatGenesisCatsAddedEvents: " + JSON.stringify(moonCatGenesisCatsAddedEvents));
 
 exit;
 
